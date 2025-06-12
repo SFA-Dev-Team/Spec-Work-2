@@ -1,0 +1,36 @@
+.press {
+  background-color: #D9891E;
+  padding: 2vh 5vw;
+  text-align: center;
+}
+.press h2{
+    color: black;
+    font-weight: 1000;
+    font-size: 2rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  gap: 2vw;
+  margin: 20px 0;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  width: auto;
+  border-radius: 8px;
+  color: #333;
+}
+.card a{
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.press button{
+    background-color: #444;
+    color: #D9891E;
+}
