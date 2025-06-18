@@ -30,6 +30,10 @@
     font-size: 1.1rem;
     cursor: pointer;
 }
+.card a:hover{
+  color: #a35f05;
+  font-weight: bold;
+}
 .press button{
     background-color: #444;
     color: #D9891E;
