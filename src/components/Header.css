@@ -1,16 +1,160 @@
+/* General Header */
 .header {
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    padding: 1vh 5vw;
-    align-items: center;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 5vw;
+  align-items: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.logo img {
+  height: auto;
+}
+
+/* Navigation */
+.nav {
+  gap: 2vw;
+  display: flex;
+  align-items: center;
 }
 
 .nav a {
-    font-size: 1.2rem;
-    margin-left: 1vw;
-    color: #d35400;
-    font-weight: bold;
-    text-decoration: none;
+  font-size: 1.1rem;
+  color: #d35400;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #a04000;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropbtn {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.dropbtn::after {
+  content: ' \25BC';
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  position: absolute;
+  background-color: #fff;
+  min-width: 220px;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+/* Show dropdown content */
+.dropdown-content.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Links inside dropdown */
+.dropdown-content a {
+  border: none;
+  display: block;
+  padding: 12px 18px;
+  color: #d35400;
+  background-color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+/* Submenu */
+.dropdown-submenu {
+  width: 100%;
+  position: relative;
+}
+
+.dropbtn-submenu {
+  padding: 12px 18px;
+  font-weight: 600;
+  background-color: #fff;
+  color: #000;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.arrow {
+  margin-left: 6px;
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+.dropdown-submenu-content {
+  background-color: #fdfdfd;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.dropdown-submenu-content a {
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  color: #444;
+  border-radius: 4px;
+}
+
+.dropdown-submenu-content a:hover {
+  background-color: #eee;
+}
+
+.dropdown-submenu-content.show-submenu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Extra class for Our Team and Capital Providers */
+.extra {
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.extra:hover {
+  background-color: #f0f0f0;
+  color: #d35400;
 }

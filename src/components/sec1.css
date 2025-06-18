@@ -27,12 +27,21 @@
 }
 
 button {
-    background-color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 1vh 1vw;
-    color: #D9891E;
-    font-weight: bold;
-    margin-top: 15px;
-    cursor: pointer;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 1vh 1.5vw;
+  color: #D9891E;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #D9891E;
+  color: white;
+  transform: scale(1.02);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }

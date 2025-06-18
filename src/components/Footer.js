@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <div>
-          <img src="./ninth-street-capital.png" alt="Ninth Street Capital Partners Logo" />
+          <a href=''><img src="./ninth-street-capital.png" alt="Ninth Street Capital Partners Logo" /></a>
         </div>
         <div>
             <p><a href=''>Who We Are</a></p>
