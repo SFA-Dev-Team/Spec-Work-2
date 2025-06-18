@@ -4,6 +4,7 @@ import './Header.css';
 export default function Header() {
   const [openDropdown, setOpenDropdown] = useState(null); // 'who', 'approach', 'about'
   const [openSubmenu, setOpenSubmenu] = useState(null); // 'company', 'acquisition'
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const whoRef = useRef(null);
   const approachRef = useRef(null);
@@ -22,6 +23,12 @@ export default function Header() {
     setOpenSubmenu(prev => (prev === key ? null : key));
   };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(prev => !prev);
+    setOpenDropdown(null);
+    setOpenSubmenu(null);
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -38,12 +45,44 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Close mobile menu on resize > 1016px
+  useEffect(() => {
+    const handleResize = () => {
+      if(window.innerWidth > 1016 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen]);
+
+  // Close mobile menu on scroll
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleScroll = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [mobileMenuOpen]);
+
   return (
     <header className="header">
       <div className="logo">
-        <a href=''><img src="./ninth-street-capital.png" alt="Logo" /></a>
+        <a href='/'><img src="./ninth-street-capital.png" alt="Logo" /></a>
       </div>
-      <nav className="nav">
+
+      {/* Hamburger button - visible only under 1016px */}
+      <button className="hamburger" onClick={toggleMobileMenu} aria-label="Toggle menu">
+        {/* Simple hamburger lines */}
+        <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
+        <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
+        <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
+      </button>
+
+      <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         {/* Who We Are */}
         <div className="dropdown" ref={whoRef}>
           <a href="/" onClick={toggleDropdown('who')} className={`dropbtn ${openDropdown === 'who' ? 'active' : ''}`}>
@@ -72,7 +111,7 @@ export default function Header() {
           <div className={`dropdown-content ${openDropdown === 'approach' ? 'show' : ''}`}>
             <div className="dropdown-submenu">
               <a href="/" onClick={toggleSubmenu('acquisition')} className={`dropbtn-submenu ${openSubmenu === 'acquisition' ? 'active' : ''}`}>
-                The Acquisition Process <span className="arrow">{openSubmenu === 'company' ? '▲' : '▼'}</span>
+                The Acquisition Process <span className="arrow">{openSubmenu === 'acquisition' ? '▲' : '▼'}</span>
               </a>
               <div className={`dropdown-submenu-content ${openSubmenu === 'acquisition' ? 'show-submenu' : ''}`}>
                 <a href="/">Investment Criteria</a>

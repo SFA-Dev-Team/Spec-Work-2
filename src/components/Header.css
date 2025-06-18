@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 /* General Header */
 .header {
   background-color: #fff;
@@ -158,4 +162,108 @@
 .extra:hover {
   background-color: #f0f0f0;
   color: #d35400;
+}
+/* Hide hamburger by default */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 28px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; /* in front */
+}
+
+.hamburger .bar {
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger animation when open */
+.hamburger .bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger .bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger .bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Responsive: Show hamburger under 1016px */
+@media screen and (max-width: 1016px) {
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav {
+    display: none;
+    position: fixed;
+    top: 0; /* height of header approx */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    background: white;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+
+  .nav.mobile-open {
+    display: flex;
+    margin-top: 15vh;
+  }
+
+  /* Stack nav items vertically */
+  .nav > a,
+  .nav .dropdown {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Dropdown content - show full width and no hover */
+  .dropdown-content {
+    box-shadow: none;
+    width: 100%;
+    border: none;
+    background: transparent;
+    display: none;
+    padding-left: 1rem;
+    box-sizing: border-box;
+  }
+  .dropdown-content.show {
+    display: block;
+    position: static;
+  }
+
+  /* Submenu content */
+  .dropdown-submenu-content {
+    padding-left: 1rem;
+    width: 100%;
+  }
+  .dropdown-submenu-content.show-submenu {
+    display: block;
+  }
+  
+  /* Make dropdown toggles full width */
+  .dropbtn, .dropbtn-submenu {
+    width: 100%;
+  }
+
+  /* Extra links style in mobile */
+  .extra {
+    display: block;
+    padding-left: 1rem;
+  }
+  .dropbtn {
+    padding: 0px;
+  }
 }
