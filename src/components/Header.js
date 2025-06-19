@@ -6,6 +6,7 @@ export default function Header() {
   const [openSubmenu, setOpenSubmenu] = useState(null); // 'company', 'acquisition'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const headerRef = useRef(null);
   const whoRef = useRef(null);
   const approachRef = useRef(null);
   const aboutRef = useRef(null);
@@ -29,6 +30,7 @@ export default function Header() {
     setOpenSubmenu(null);
   };
 
+  // Close dropdown if clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -45,10 +47,10 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close mobile menu on resize > 1016px
+  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
-      if(window.innerWidth > 1016 && mobileMenuOpen) {
+      if (window.innerWidth > 1016 && mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
     };
@@ -59,24 +61,32 @@ export default function Header() {
   // Close mobile menu on scroll
   useEffect(() => {
     if (!mobileMenuOpen) return;
-
     const handleScroll = () => {
       setMobileMenuOpen(false);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen]);
 
+  // ✅ Adjust nav padding based on header height
+  useEffect(() => {
+    const nav = document.querySelector('.nav');
+    if (mobileMenuOpen && headerRef.current && nav) {
+      const headerHeight = headerRef.current.offsetHeight;
+      nav.style.marginTop = `${headerHeight-2}px`;
+    } else if (nav) {
+      nav.style.marginTop = '';
+    }
+  }, [mobileMenuOpen]);
+
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="logo">
         <a href='/'><img src="./ninth-street-capital.png" alt="Logo" /></a>
       </div>
 
-      {/* Hamburger button - visible only under 1016px */}
+      {/* Hamburger button */}
       <button className="hamburger" onClick={toggleMobileMenu} aria-label="Toggle menu">
-        {/* Simple hamburger lines */}
         <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
         <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
         <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>

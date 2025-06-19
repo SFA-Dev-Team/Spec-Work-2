@@ -58,3 +58,8 @@
     transform: scale(0.99);
   }
 }
+@media screen and (max-width: 982px) {
+  .hero-content{
+    font-size: 1rem;
+  }
+}

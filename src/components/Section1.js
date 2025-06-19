@@ -30,7 +30,7 @@ export default function Section1() {
           <strong>For business owners</strong> seeking an exit or liquidity, NSCP structures flexible solutions.
         </p>
         <button>Partner with Us</button>
-        <p>
+        <p style={{ marginTop: '2vh' }}>
           <strong>For buy-side and sell-side intermediaries,</strong> NSCP is an excellent partner. We are efficient when vetting businesses. When our rigorous analysis supports our commitment, we move quickly to complete the investment.
         </p>
         <button>See Our Process</button>

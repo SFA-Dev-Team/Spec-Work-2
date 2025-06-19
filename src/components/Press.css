@@ -38,3 +38,9 @@
     background-color: #444;
     color: #D9891E;
 }
+@media screen and (max-width: 982px) {
+  .cards{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
