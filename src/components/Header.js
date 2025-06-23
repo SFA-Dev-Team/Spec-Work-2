@@ -3,7 +3,7 @@ import './Header.css';
 
 export default function Header() {
   const [openDropdown, setOpenDropdown] = useState(null); // 'who', 'approach', 'about'
-  const [openSubmenu, setOpenSubmenu] = useState(null); // 'company', 'acquisition'
+  const [openSubmenu, setOpenSubmenu] = useState(null);   // 'company', 'acquisition'
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const headerRef = useRef(null);
@@ -42,7 +42,6 @@ export default function Header() {
         setOpenSubmenu(null);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
@@ -68,24 +67,33 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [mobileMenuOpen]);
 
-  // ✅ Adjust nav padding based on header height
+  // Adjust nav padding based on header height
   useEffect(() => {
     const nav = document.querySelector('.nav');
     if (mobileMenuOpen && headerRef.current && nav) {
       const headerHeight = headerRef.current.offsetHeight;
-      nav.style.marginTop = `${headerHeight-2}px`;
+      nav.style.marginTop = `${headerHeight - 2}px`;
     } else if (nav) {
       nav.style.marginTop = '';
     }
   }, [mobileMenuOpen]);
 
+  const closeDropdown = () => {
+    setOpenDropdown(null);
+    setOpenSubmenu(null);
+  };
+
+  const closeSubmenu = () => {
+    setOpenSubmenu(null);
+  };
+
   return (
     <header className="header" ref={headerRef}>
       <div className="logo">
-        <a href='/'><img src="./ninth-street-capital.png" alt="Logo" /></a>
+        <a href="/"><img src="./ninth-street-capital.png" alt="Logo" /></a>
       </div>
 
-      {/* Hamburger button */}
+      {/* Hamburger */}
       <button className="hamburger" onClick={toggleMobileMenu} aria-label="Toggle menu">
         <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
         <span className={`bar ${mobileMenuOpen ? 'open' : ''}`}></span>
@@ -94,12 +102,19 @@ export default function Header() {
 
       <nav className={`nav ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         {/* Who We Are */}
-        <div className="dropdown" ref={whoRef}>
+        <div
+          className="dropdown"
+          ref={whoRef}
+          onMouseLeave={closeDropdown}
+        >
           <a href="/" onClick={toggleDropdown('who')} className={`dropbtn ${openDropdown === 'who' ? 'active' : ''}`}>
             Who we are
           </a>
           <div className={`dropdown-content ${openDropdown === 'who' ? 'show' : ''}`}>
-            <div className="dropdown-submenu">
+            <div
+              className="dropdown-submenu"
+              onMouseLeave={closeSubmenu}
+            >
               <a href="/" onClick={toggleSubmenu('company')} className={`dropbtn-submenu ${openSubmenu === 'company' ? 'active' : ''}`}>
                 Company Overview <span className="arrow">{openSubmenu === 'company' ? '▲' : '▼'}</span>
               </a>
@@ -114,12 +129,19 @@ export default function Header() {
         </div>
 
         {/* Our Approach */}
-        <div className="dropdown" ref={approachRef}>
+        <div
+          className="dropdown"
+          ref={approachRef}
+          onMouseLeave={closeDropdown}
+        >
           <a href="/" onClick={toggleDropdown('approach')} className={`dropbtn ${openDropdown === 'approach' ? 'active' : ''}`}>
             Our Approach
           </a>
           <div className={`dropdown-content ${openDropdown === 'approach' ? 'show' : ''}`}>
-            <div className="dropdown-submenu">
+            <div
+              className="dropdown-submenu"
+              onMouseLeave={closeSubmenu}
+            >
               <a href="/" onClick={toggleSubmenu('acquisition')} className={`dropbtn-submenu ${openSubmenu === 'acquisition' ? 'active' : ''}`}>
                 The Acquisition Process <span className="arrow">{openSubmenu === 'acquisition' ? '▲' : '▼'}</span>
               </a>
@@ -133,7 +155,11 @@ export default function Header() {
         </div>
 
         {/* About Us */}
-        <div className="dropdown" ref={aboutRef}>
+        <div
+          className="dropdown"
+          ref={aboutRef}
+          onMouseLeave={closeDropdown}
+        >
           <a href="/" onClick={toggleDropdown('about')} className={`dropbtn ${openDropdown === 'about' ? 'active' : ''}`}>
             About Us
           </a>
