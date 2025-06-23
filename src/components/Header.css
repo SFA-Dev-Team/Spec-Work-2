@@ -197,9 +197,28 @@
 .hamburger .bar.open:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
+.dropdown:hover > .dropdown-content {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+  display: block !important;
+}
+
+.dropdown-submenu:hover > .dropdown-submenu-content {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.dropdown:hover > .dropbtn::after,
+.dropdown-submenu:hover > .dropbtn-submenu .arrow {
+  transform: rotate(180deg);
+}
 
 /* Responsive: Show hamburger under 1016px */
 @media screen and (max-width: 1090px) {
+  
   .hamburger {
     display: flex;
     margin: auto 0;

@@ -1,7 +1,7 @@
 .criteria-container {
   display: flex;
   justify-content: center;
-  gap: 8vw;
+  gap: 4vw;
   padding: 5vh 5vw;
   background-color: #eee;
 }
@@ -25,7 +25,14 @@
     text-align: justify;
     font-size: 1.1rem;
 }
-
+.box-image {
+  width: 100%;
+  height: 50vh;
+  border-radius: 8px;
+  margin-top: 1vh;
+  object-fit: cover;
+  object-position: left center;
+}
 button {
   background-color: white;
   border: none;
@@ -45,7 +52,7 @@ button:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
-@media screen and (max-width: 982px) {
+@media screen and (max-width: 1020px) {
   .criteria-container{
     display: flex;
     flex-direction: column;
@@ -59,5 +66,9 @@ button:hover {
   }
   .criteria-container .box p{
     font-size: 0.9rem;
+  }
+  .box-image{
+    height: auto;
+    object-fit: fill;
   }
 }
